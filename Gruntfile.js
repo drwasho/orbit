@@ -13,6 +13,8 @@ module.exports = function (grunt) {
   const binDirectory = 'bin/'
   const moduleCacheDirectory = '.tmp/'
 
+  let env = Object.assign({}, process.env)
+
   grunt.initConfig({
     clean: {
       cache: moduleCacheDirectory,
@@ -100,21 +102,21 @@ module.exports = function (grunt) {
   })
 
   grunt.registerTask('npm_install', '', function (os) {
-      var done = this.async()
-      var params = ['install', '--production', '--cache-min 9999999']
-      let env = Object.assign({}, process.env)
-      env.TARGET_OS = grunt.option('TARGET_OS')
-      var npm = spawn('npm', params, { cwd: moduleCacheDirectory, env: env })
-      npm.stdout.pipe(process.stdout)
-      npm.stderr.pipe(process.stderr)
-      npm.on('error', (err) => done(false))
-      npm.on('exit', done)
+    var done = this.async()
+    var params = ['install', '--cache-min 9999999']
+    var npm = spawn('npm', params, { cwd: moduleCacheDirectory, env: env })
+    npm.stdout.pipe(process.stdout)
+    npm.stderr.pipe(process.stderr)
+    npm.on('error', (err) => done(false))
+    npm.on('exit', done)
   })
 
   grunt.registerTask('default', ["build"])
   grunt.registerTask('build', ["build_osx", "build_linux"])
 
   grunt.registerTask('build_osx', function() {
+    env.TARGET_OS = 'darwin'
+
     if(!skipNpmInstall)
       grunt.task.run('clean:cache')
 
@@ -132,6 +134,8 @@ module.exports = function (grunt) {
   })
 
   grunt.registerTask('build_linux', function() {
+    env.TARGET_OS = 'linux'
+
     if(!skipNpmInstall)
       grunt.task.run('clean:cache')
 
