@@ -8,8 +8,14 @@ import emojisAnnotations from 'emoji-annotation-to-unicode';
 import 'styles/EmojiPicker.scss';
 
 const modulo = (op1, op2) => (((op1 % op2) + op2) % op2);
-const supportedEmojiUnicodes = Object.keys(emojisAnnotations).map((e) => emojisAnnotations[e]).filter((e) => e !== '1f306');
-const supportedEmojis = pickBy(emojiData, (e) => supportedEmojiUnicodes.indexOf(e.unicode) > -1);
+
+const supportedEmojiUnicodes = Object.keys(emojisAnnotations)
+  .map((e) => emojisAnnotations[e])
+  .filter((e) => e !== '1f306');
+
+const supportedEmojis = Object.keys(emojiData)
+  .map((e) => emojiData[e])
+  .filter((e) => supportedEmojiUnicodes.indexOf(e.unicode) > -1);
 
 const emojiList = supportedEmojis.map((e) => {
   if (e.shortname.startsWith(':flag_'))

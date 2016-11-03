@@ -18,6 +18,8 @@
     "lodash.last": "^3.0.0",
     "lodash.pickby": "^4.6.0",
     "lodash.some": "^4.6.0",
+    "lodash.sortby": "^4.7.0",
+    "lodash.take": "^4.1.1",
     "logplease": "^1.2.9",
     "object-assign": "^4.1.0",
     "orbit_": "^0.0.12",
