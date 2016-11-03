@@ -85,7 +85,7 @@ module.exports = {
     }]
   },
   externals: {
-    fs: 'fs',
+    fs: '{}',
     du: '{}',
     net: '{}',
     tls: '{}',

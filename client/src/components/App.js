@@ -54,7 +54,7 @@ const views = {
 }
 
 const hasIPFS = !!window.ipfsInstance
-console.log("hasIPFS:", hasIPFS)
+logger.debug("hasIPFS:", hasIPFS)
 let orbit// = hasIPFS ? window.orbit : null
 
 var App = React.createClass({
