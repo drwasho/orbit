@@ -60,12 +60,12 @@ module.exports = {
     loaders: [{
       test: /\.(js|jsx)$/,
       exclude: /node_modules/,
-      loader: 'babel',
+      loader: 'babel-loader',
       query: babel
     }, {
       test: /\.js$/,
       include: /node_modules\/(hoek|qs|wreck|boom|ipfs.+|orbit.+|logplease|crdts|promisify-es|whatwg-fetch|node-fetch|isomorphic-fetch|db\.js)/,
-      loader: 'babel',
+      loader: 'babel-loader',
       query: babel
     }, {
       test: /\.css$/,
@@ -81,7 +81,7 @@ module.exports = {
       loader: 'file?name=[path][name].[ext]',
     }, {
       test: /\.json$/,
-      loader: 'json'
+      loader: 'json-loader'
     }]
   },
   externals: {
@@ -91,6 +91,5 @@ module.exports = {
     console: '{}',
     'require-dir': '{}',
     mkdirp: '{}'
-    // process :'{ version: "your mom" }'
   }
 }
